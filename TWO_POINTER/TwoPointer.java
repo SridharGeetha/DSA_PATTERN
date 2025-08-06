@@ -76,6 +76,43 @@ class TwoPointer{
         return ans;
     }
 
+    public static int triangleNumber(int[] nums) {
+        int cnt  = 0;
+        int n = nums.length;
+        Arrays.sort(nums);
+        for(int k = n-1;k>=2;k--){
+            int i =0;
+            int j = k-1;
+            while(i<j){
+                if(nums[i]+nums[j]>nums[k]){
+                    cnt += j-i;
+                    j--;
+                }else{
+                    i++;
+                }
+            }
+        }
+        return cnt;
+    }
+
+    public static int numRescueBoats(int[] arr, int k) {
+        Arrays.sort(arr);
+        int n= arr.length;
+        int left = 0;
+        int right = n-1;
+        int cnt = 0;
+        while(left <= right){
+            if(arr[left]+arr[right]<=k){
+                left++;
+            }
+            right--;
+            cnt++;
+        }
+        return cnt;
+    }
+
+
+
     //remove given element using two pointer
     public static int removeElement(int[] nums, int val) {
         int k =0;
@@ -87,7 +124,7 @@ class TwoPointer{
         }
         return k;
     }
-`
+
     //remove duplicate and same pattern like above
     public static int removeDuplicates_I(int[] arr) {
         int i = 0;
@@ -135,6 +172,9 @@ class TwoPointer{
         }
         return arr;
     }
+
+
+
 
     // two Array
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -213,6 +253,23 @@ class TwoPointer{
         return cnt;
     }
 
+    //same model like above
+    public int maxOperations(int[] nums, int k) {
+        int n = nums.length;
+        Map<Integer,Integer> map = new HashMap<>();
+        int count = 0;
+        for(int num : nums){
+            int val = k-num;
+            if(map.getOrDefault(val,0)>0){
+                count++;
+                map.put(val,map.get(val)-1);
+            }else{
+                map.put(num,map.getOrDefault(num,0)+1);
+            }
+        }
+        return count;
+    }
+
     // In which we are using map which take space that why SC goes O(N)
     public static int findPairs_Better(int[] arr, int k) {
         int cnt = 0;
@@ -255,6 +312,10 @@ class TwoPointer{
         return count;
     }
    
+
+
+
+
     // <<<<<Histogram>>>>> type
     //using prefix max and suffix max val TC O(3N) and SC O(2N)  
     public static int trapingRainWater_Better(int[] arr) {
@@ -313,6 +374,10 @@ class TwoPointer{
         }
         return maxi;
     }
+
+
+
+
 
     //prefix and two pointer SC O(N) due to prefix sum 
     //it can be optimized using Sliding window Technique
