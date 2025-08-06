@@ -1,4 +1,4 @@
-package TWO_POINTER;
+package DSA_PATTERN;
 
 import java.util.ArrayList;
 import java.util.List;
