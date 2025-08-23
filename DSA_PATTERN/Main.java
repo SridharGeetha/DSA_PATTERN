@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        
+
+
         // String s1 = "ab";
         // String s2 = "eidaooo";
         // System.out.println(SlidingWindow.checkPermutaion(s1, s2));
@@ -16,11 +20,11 @@ public class Main {
         // for(int[] num : ans){
         //     System.out.print("["+num[0]+" "+num[1]+"] ");
         // }
-        String s = "aabcdaabc";
-        Solution sol = new Solution();
-        int res = sol.getLPSLength(s);
-        System.out.println(res);
-        // int x = -1;
+        // String s = "aabcdaabc";
+        // Solution sol = new Solution();
+        // int res = sol.getLPSLength(s);
+        // System.out.println(res);
+        // // int x = -1;
         // System.out.println(1-x);
     }
 
@@ -61,3 +65,15 @@ class Solution {
 }
 
 //[[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
+
+
+/* Node class of the linked list
+class Node {
+    int data;
+    Node next;
+    Node(int key) {
+        data = key;
+        next = null;
+    }
+}
+*/

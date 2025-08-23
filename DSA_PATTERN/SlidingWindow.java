@@ -2,8 +2,10 @@ package DSA_PATTERN;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -19,7 +21,7 @@ import java.util.Queue;
 // Count of specific condition	Count of subarrays with sum < k, vowels, etc
 class SlidingWindow{
 
-    // <<<<<<<<<<<<<<<< Fixed Size >>>>>>>>>>>>>>>>>
+    // <<<<<<<<<<<<<<<< Fixed Size >>>>>>>>>>>>>>>>>  \\
 
      public int minimumDifference(int[] nums, int k) {
         int min = Integer.MAX_VALUE;
@@ -212,5 +214,95 @@ class SlidingWindow{
     }
     //Longest Substring Without Repeating Characters
     //K-length Substrings with No Repeats
+
+
+
+
+    //<<<<<<<<<<<<<<<<<<<  Variable-size >>>>>>>>>>>>>>>>>>
+
+    public int lengthOfLongestSubstring(String s) {
+        int l=0;
+        int r=0;
+        int len=0;
+        int n = s.length();
+        HashMap<Character,Integer> map = new HashMap<>();
+        while(r<n){
+            if(map.containsKey(s.charAt(r))){
+                if(map.get(s.charAt(r))>=l){
+                l = map.get(s.charAt(r))+1;
+                }
+            }
+            len = Math.max(len,r-l+1);
+            map.put(s.charAt(r),r);
+            r++;
+        }
+        return len;
+    }
+
+    public static int longestKSubstr(String s, int k) {
+        int n = s.length();
+        int maxi = -1;
+        Map<Character,Integer> map = new HashMap<>();   
+        int left = 0;
+        int right = 0;
+        while(right < n){
+            if(map.size()>k){
+                char c = s.charAt(left);
+                map.put(c,map.get(c)-1);
+                if(map.get(c) == 0){
+                    map.remove(c);
+                }
+                left++;
+            }
+            map.put(s.charAt(right),map.getOrDefault(s.charAt(right),0)+1);
+            if(map.size()==k){
+                maxi = Math.max(maxi,right-left+1);
+            }
+            right++;
+        }
+        return maxi;
+    }
+
+    //same pattern like above
+    public int totalFruit(int[] fruits) {
+        int l=0;
+        int r=0;
+        int max=Integer.MIN_VALUE;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        while(r<fruits.length){
+            map.put(fruits[r],map.getOrDefault(fruits[r],0)+1);
+            if(map.size()>2){
+                map.put(fruits[l],map.get(fruits[l])-1);
+                if(map.get(fruits[l])==0)map.remove(fruits[l]);
+                l++;
+            }
+            if(map.size()<=2) max = Math.max(max,r-l+1);
+            r++;
+        }
+        return max;
+    }
+
+    public int characterReplacement(String s, int k) {
+        int l=0;
+        int r=0;
+        int freq=0;
+        int max=0;
+        HashMap<Character,Integer> map = new HashMap<>();
+        while(r<s.length()){
+            char rc = s.charAt(r);
+            map.put(rc,map.getOrDefault(rc,0)+1);
+            freq = Math.max(freq,map.get(rc));
+            if((r-l+1)-freq > k){
+            char lc = s.charAt(l);
+                map.put(lc,map.get(lc)-1);
+                l++;
+            }
+            if((r-l+1)-freq <= k){
+                max=Math.max(max,r-l+1);
+            }
+            r++;
+        }
+        return max;
+    }
 
 }
