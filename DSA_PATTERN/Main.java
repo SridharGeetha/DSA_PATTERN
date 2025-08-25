@@ -7,9 +7,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        
-
-
+        int[] arr1 = {5,10,15,40};
+        int[] arr2 = {2,3,20};
+        Node head1 = LinkedList.convertArrayToLinkedList(arr1);
+        Node head2= LinkedList.convertArrayToLinkedList(arr2);
+        Node ans = LinkedList.sortedMerge(head1, head2);
+        LinkedList.printLL(ans);
         // String s1 = "ab";
         // String s2 = "eidaooo";
         // System.out.println(SlidingWindow.checkPermutaion(s1, s2));
